@@ -35,20 +35,20 @@ export type BlogCreateRequest = {
 
 export type BlogUpdateRequest = BlogCreateRequest;
 
+export const getMyBlogsApi = (params?: { page?: number; size?: number; sort?: string }) =>
+  api.get<{ content: BlogListItemResponse[] }>("/blogs/me", { params });
+
+export const getBlogBySlugApi = (slug: string) =>
+  api.get<BlogResponse>(`/blogs/${slug}`);
+
 export const createBlogApi = (payload: BlogCreateRequest) =>
   api.post<BlogResponse>("/blogs", payload);
 
 export const updateBlogApi = (id: number, payload: BlogUpdateRequest) =>
   api.put<BlogResponse>(`/blogs/${id}`, payload);
 
-export const getBlogBySlugApi = (slug: string) =>
-  api.get<BlogResponse>(`/blogs/${slug}`);
+export const publishBlogApi = (id: number) =>
+  api.patch(`/blogs/${id}/publish`);
 
-export const getBlogsApi = (params?: {
-  page?: number;
-  size?: number;
-  sort?: string;
-}) => api.get<{ content: BlogListItemResponse[] }>("/blogs", { params });
-
-export const publishBlogApi = (id: number) => api.patch(`/blogs/${id}/publish`);
-export const deleteBlogApi = (id: number) => api.delete(`/blogs/${id}`);
+export const deleteBlogApi = (id: number) =>
+  api.delete(`/blogs/${id}`);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   deleteBlogApi,
   getBlogBySlugApi,
@@ -9,6 +9,8 @@ import {
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
+
   const [blog, setBlog] = useState<BlogResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -38,7 +40,7 @@ export default function BlogDetailPage() {
   const handleDelete = async () => {
     if (!blog) return;
     await deleteBlogApi(blog.id);
-    window.location.href = "/blogs";
+    navigate("/blogs");
   };
 
   if (loading) return <p className="text-gray-600">Loading blog...</p>;
@@ -49,9 +51,10 @@ export default function BlogDetailPage() {
     <div className="mx-auto max-w-4xl space-y-6 rounded-2xl border bg-white p-6 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-bold">{blog.title}</h1>
+          <h1 className="text-4xl font-bold tracking-tight">{blog.title}</h1>
           <p className="mt-3 text-gray-600">{blog.summary}</p>
         </div>
+
         <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium">
           {blog.status}
         </span>
@@ -68,23 +71,25 @@ export default function BlogDetailPage() {
         ))}
       </div>
 
-      <article className="prose max-w-none whitespace-pre-wrap">
+      <article className="whitespace-pre-wrap leading-7 text-gray-800">
         {blog.content}
       </article>
 
-      <div className="flex gap-3 pt-2">
+      <div className="flex flex-wrap gap-3 pt-2">
         <button
           onClick={handlePublish}
           className="rounded-lg bg-black px-4 py-2 text-white"
         >
           Publish
         </button>
+
         <Link
-          to={`/blogs/edit/${blog.id}`}
+          to={`/blogs/edit/${blog.slug}`}
           className="rounded-lg border px-4 py-2"
         >
           Edit
         </Link>
+
         <button
           onClick={handleDelete}
           className="rounded-lg border px-4 py-2 text-red-600"

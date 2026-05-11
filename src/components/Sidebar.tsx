@@ -1,5 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { Home, FileText, Users, BarChart3, PenSquare, Settings, LogOut, Sparkles, X } from "lucide-react";
+import {
+  Home,
+  FileText,
+  Users,
+  BarChart3,
+  PenSquare,
+  Settings,
+  LogOut,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 const items = [
   { to: "/dashboard", label: "Dashboard", icon: Home },

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
-export default function AppLayout() {
+const AppLayout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -18,13 +18,15 @@ export default function AppLayout() {
 
             <div className="flex-1">
               <Topbar onOpenMobileMenu={() => setMobileMenuOpen((v) => !v)} />
-              <div className="p-4 md:p-6 xl:p-8">
+              <main className="p-4 md:p-6 xl:p-8">
                 <Outlet />
-              </div>
+              </main>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default AppLayout;
