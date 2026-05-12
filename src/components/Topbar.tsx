@@ -18,6 +18,7 @@ export default function Topbar({ onOpenMobileMenu }: Props) {
           >
             <Menu className="h-5 w-5" />
           </button>
+
           <div>
             <div className="text-sm text-zinc-500">Good morning, Juyel 👋</div>
             <div className="text-lg font-semibold tracking-tight md:text-xl">

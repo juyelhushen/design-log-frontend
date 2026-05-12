@@ -28,7 +28,7 @@ export default function AppRouter() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/blogs/new" element={<BlogEditorPage />} />
-          <Route path="/blogs/edit/:id" element={<BlogEditorPage />} />
+          <Route path="/blogs/edit/:slug" element={<BlogEditorPage />} />
           <Route path="/blogs/:slug" element={<BlogDetailPage />} />
         </Route>
       </Routes>
