@@ -14,34 +14,27 @@ import { Table } from "@tiptap/extension-table";
 
 const lowlight = createLowlight(all);
 
-export const blogEditorExtensions = [
+export const editorExtensions = [
   StarterKit.configure({
-    heading: { levels: [1, 2, 3] },
     codeBlock: false,
   }),
-  Underline,
-  Highlight.configure({ multicolor: true }),
-  Link.configure({
-    openOnClick: false,
-    autolink: true,
-    linkOnPaste: true,
-  }),
+  Highlight,
   Image.configure({
     inline: false,
     allowBase64: true,
   }),
+  Link.configure({
+    openOnClick: false,
+    autolink: true,
+    defaultProtocol: "https",
+  }),
   Placeholder.configure({
-    placeholder:
-      "Start writing your blog here... use headings, code blocks, highlights, links, images, lists, quotes and tables.",
+    placeholder: "Start writing your article...",
   }),
   TextAlign.configure({
     types: ["heading", "paragraph"],
   }),
-  CodeBlockLowlight.configure({ lowlight }),
-  Table.configure({
-    resizable: true,
+  CodeBlockLowlight.configure({
+    lowlight,
   }),
-  TableRow,
-  TableHeader,
-  TableCell,
 ];
